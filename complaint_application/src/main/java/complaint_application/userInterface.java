@@ -4,6 +4,35 @@ import java.sql.PreparedStatement;
 import java.util.Scanner;
 
 public class userInterface {
+	public void reload() throws Exception {
+		Main n=new Main();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Do you want to continue  : y/n" );
+		System.out.println("y : User Portal");
+		System.out.println("n : Exit");
+		char c=sc.next().charAt(0);
+		if(c=='y') {
+			 System.out.println("Forwarding back to user interface");
+        for(int k=0;k<5;k++) 
+        {
+        	System.out.print(".");
+        	System.out.print(" ");
+        	Thread.sleep(400);
+        }
+        
+        n.user();
+		}
+		else if(c=='n') {
+			for(int k=0;k<5;k++) 
+	        {
+	        	System.out.print(".");
+	        	System.out.print(" ");
+	        	Thread.sleep(400);
+	        }
+			n.main(null);
+		}
+		
+	}
 	public void Electricalcomplaint() throws Exception {
 		System.out.println("*************Electrical Complaint*************");
 		System.out.println();
@@ -15,15 +44,15 @@ public class userInterface {
 		System.out.println();
 		System.out.println("Enter Address");
 		System.out.println();
-		String address=sc.next();
+		String address=sc.nextLine();
 		System.out.println();
 		System.out.println("Enter complain date in yyyy-mm-dd format");
 		System.out.println();
-		String date=sc.next();
+		String date=sc.nextLine();
 		System.out.println();
 		System.out.println("Enter the complaint ");
 		System.out.println();
-		String complain=sc.next();
+		String complain=sc.nextLine();
 		
 		e.setElectrician(address, date, complain);
 		   pr.setString(1, e.getAddress());
@@ -41,6 +70,8 @@ public class userInterface {
 		            Thread.sleep(400);
 		        }
 		        System.out.println("Electrical Complaint cleared");
+		        reload();
+		       
 		  }
 		   
 	}
@@ -54,13 +85,13 @@ public class userInterface {
 		PreparedStatement pr=dbconnection_admin.getcarWash();
 		System.out.println("Enter Address");
 		System.out.println();
-		String address=sc.next();
+		String address=sc.nextLine();
 		System.out.println("Enter complain date in yyyy-mm-dd format");
 		System.out.println();
-		String date=sc.next();
+		String date=sc.nextLine();
 		System.out.println("Enter the complaint ");
 		System.out.println();
-		String complain=sc.next();
+		String complain=sc.nextLine();
 		 pr.setString(1, address);
 		   pr.setString(2, date);
 		   pr.setString(3, complain);
@@ -76,6 +107,7 @@ public class userInterface {
 			            Thread.sleep(400);
 			        }
 			        System.out.println("Plumber Complaint cleared");
+			       reload();
 			  }
 	}
 	public void Carwash() throws Exception{
@@ -87,15 +119,15 @@ public class userInterface {
 		PreparedStatement pr=dbconnection_admin.getcarWash();
 		System.out.println();
 		System.out.println("Enter Address");
-		String address=sc.next();
+		String address=sc.nextLine();
 		System.out.println();
 		System.out.println("Enter complain date in yyyy-mm-dd format");
 		System.out.println();
-		String date=sc.next();
+		String date=sc.nextLine();
 		System.out.println();
 		System.out.println("Enter the complaint ");
 		System.out.println();
-		String complain=sc.next();
+		String complain=sc.nextLine();
 		 pr.setString(1, address);
 		   pr.setString(2, date);
 		   pr.setString(3, complain);
@@ -111,6 +143,8 @@ public class userInterface {
 			            Thread.sleep(400);
 			        }
 			        System.out.println("CarWash Complaint cleared");
+			        reload();
+			       
 			  }
 	}
 	

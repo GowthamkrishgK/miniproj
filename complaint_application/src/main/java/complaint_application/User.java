@@ -50,16 +50,16 @@ public class User {
 	}
 	public void setUser() {
 		String[] s= {"user","admin"};
-		System.out.println("Enter user name without Whitespace");
-		 name=sc.next();
+		System.out.println("Enter user name ");
+		 name=sc.nextLine();
 		 System.out.println("Enter Email");
-		 email=sc.next();
+		 email=sc.nextLine();
 		 System.out.println("Enter Phone Number");
-		 phone=sc.next();
+		 phone=sc.nextLine();
 		System.out.println("Enter Password");
-		 password=sc.next();
+		 password=sc.nextLine();
 		 System.out.println("Confirm Password");
-		 con_pass=sc.next();
+		 con_pass=sc.nextLine();
 		 System.out.println("Select the Role");
 		 System.out.println("1:Admin Role");
 		 System.out.println("2:User Role");
@@ -74,9 +74,9 @@ public class User {
 	public void setUserLogin() {
 		System.out.println("**********Login");
 		System.out.println("Enter Email");
-		setEmail(sc.next());
+		setEmail(sc.nextLine());
 		System.out.println("Enter Password");
-		setPassword(sc.next());
+		setPassword(sc.nextLine());
 	}
 	
 }

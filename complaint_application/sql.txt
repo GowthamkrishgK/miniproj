@@ -1,0 +1,45 @@
+1)create database miniproj;
+2)use miniproj;
+3)CREATE TABLE `user` (
+  `email` varchar(50) NOT NULL,
+  `name` varchar(40) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `con_pass` varchar(50) NOT NULL,
+  `phonenumber` varchar(50) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `role` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+
+
+
+4) CREATE TABLE `car_wash` (
+  `address` varchar(70) DEFAULT NULL,
+  `c_date` date DEFAULT NULL,
+  `complain` varchar(100) NOT NULL,
+  `wash_id` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`wash_id`)
+
+5)CREATE TABLE `electrician` (
+  `address` varchar(70) DEFAULT NULL,
+  `c_date` date DEFAULT NULL,
+  `complain` varchar(60) NOT NULL,
+  `e_id` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`e_id`)
+)
+ 6)CREATE TABLE `plumber` (
+  `address` varchar(70) DEFAULT NULL,
+  `c_date` date DEFAULT NULL,
+  `complain` varchar(100) NOT NULL,
+  `p_id` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`p_id`)
+
+7)show tables;
++--------------------+
+| Tables_in_miniproj |
++--------------------+
+| car_wash           |
+| electrician        |
+| plumber            |
+| user               |
++--------------------+

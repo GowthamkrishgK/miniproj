@@ -8,8 +8,36 @@ import java.util.Formatter;
 import java.util.Scanner;
 
 public class adminInterface {
+   public void log()throws Exception{
+	   
+   }
 	
-	
+	public void reload() throws Exception {
+		Main n=new Main();
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Do you want to continue  : y/n" );
+		System.out.println("y : Admin Portal");
+		System.out.println("n : Exit");
+		char c=sc.next().charAt(0);
+		if(c=='y') {
+			for(int k=0;k<10;k++) 
+	        {
+	        	System.out.print(".");
+	        	System.out.print(" ");
+	        	Thread.sleep(400);
+	        }
+		 n.admin();
+		}
+		else if(c=='n') {
+			for(int k=0;k<10;k++) 
+	        {
+	        	System.out.print(".");
+	        	System.out.print(" ");
+	        	Thread.sleep(400);
+	        }
+			n.main(null);
+		}
+	}
 	///////////////////////////DISPLAY///////////////////////////////
 	
 	public void displayuser()throws Exception{
@@ -114,12 +142,15 @@ public class adminInterface {
 	int i=pr.executeUpdate();
 	if(i>0) {
 		System.out.println("Insertion is done Successsfully");
+		reload();
 		
 	}else {
 		System.out.println("Email already exist");
+		reload();
 	}
 	}else {
-		System.out.println("Password and Confirm Password should be same");
+		System.out.println("Insertion failed");
+		reload();
 	}
 	}
 	
@@ -134,11 +165,11 @@ public class adminInterface {
 		Electrician e=new Electrician();
 		System.out.println();
 		System.out.println("Enter Address");
-		String address=sc.next();
+		String address=sc.nextLine();
 		System.out.println("Enter complain date in yyyy-mm-dd format");
-		String date=sc.next();
+		String date=sc.nextLine();
 		System.out.println("Enter the complaint ");
-		String complain=sc.next();
+		String complain=sc.nextLine();
 		e.setElectrician(address, date, complain);
 		   pr.setString(1, e.getAddress());
 		   pr.setString(2, e.getC_date());
@@ -148,6 +179,10 @@ public class adminInterface {
 			  System.out.println();
 			  System.out.println("Complaint Inserted");
 			  System.out.println();
+			  reload();
+		  }else {
+			  System.out.println("Insert Failed");
+			  reload();
 		  }
 		   
 	}
@@ -160,11 +195,11 @@ public class adminInterface {
 		Scanner sc=new Scanner(System.in);
 		PreparedStatement pr=dbconnection_admin.getcarWash();
 		System.out.println("Enter Address");
-		String address=sc.next();
+		String address=sc.nextLine();
 		System.out.println("Enter complain date in yyyy-mm-dd format");
-		String date=sc.next();
+		String date=sc.nextLine();
 		System.out.println("Enter the complaint ");
-		String complain=sc.next();
+		String complain=sc.nextLine();
 		 pr.setString(1, address);
 		   pr.setString(2, date);
 		   pr.setString(3, complain);
@@ -173,6 +208,10 @@ public class adminInterface {
 				  System.out.println();
 				  System.out.println("Your complaint has been inserted");
 				  System.out.println();
+				  reload();
+			  }else {
+				  System.out.println("Insert Failed");
+				  reload();
 			  }
 	}
 	public void Carwash() throws Exception{
@@ -184,15 +223,15 @@ public class adminInterface {
 		PreparedStatement pr=dbconnection_admin.getcarWash();
 		System.out.println();
 		System.out.println("Enter Address");
-		String address=sc.next();
+		String address=sc.nextLine();
 		System.out.println();
 		System.out.println("Enter complain date in yyyy-mm-dd format");
 		System.out.println();
-		String date=sc.next();
+		String date=sc.nextLine();
 		System.out.println();
 		System.out.println("Enter the complaint ");
 		System.out.println();
-		String complain=sc.next();
+		String complain=sc.nextLine();
 		 pr.setString(1, address);
 		   pr.setString(2, date);
 		   pr.setString(3, complain);
@@ -201,6 +240,10 @@ public class adminInterface {
 				  System.out.println();
 				  System.out.println("Your complaint has been inserted");
 				  System.out.println();
+				  reload();
+			  }else {
+				  System.out.println("Insert Failed");
+				  reload();
 			  }
 	}
 	/////////////////////UPDATE////////////////////////////////////////////////////////
@@ -214,15 +257,15 @@ public class adminInterface {
 		PreparedStatement p=dbconnection_admin.updatequery(query);
 		
 		System.out.print("\n Enter Emaill");
-		String email=sc.next();
+		String email=sc.nextLine();
 		System.out.println("Enter Name");
-		String name=sc.next();
+		String name=sc.nextLine();
 		System.out.println("Enter Password");
-		String password=sc.next();
+		String password=sc.nextLine();
 		System.out.println("Enter Confirm Pass");
-		String con_pass=sc.next();
+		String con_pass=sc.nextLine();
 		System.out.println("Enter Phone");
-		String phonenumber=sc.next();
+		String phonenumber=sc.nextLine();
 		
 		String role="";
 		System.out.println("Enter your Choice");
@@ -243,10 +286,15 @@ public class adminInterface {
 		p.setString(6,role);
 		p.setInt(7, id);
 		int i=p.executeUpdate();
-		if(i>0)
+		if(i>0) {
 			System.out.println("User updated Successfully");
-		else
+			reload();
+		}
+		else {
+			
 			System.out.println("update failed");
+			reload();
+		}
 		    
 		
 	}
@@ -262,21 +310,24 @@ public class adminInterface {
 		String query="UPDATE plumber SET  address = ?, c_date = ?,complain=? WHERE p_id=? ;";
 		PreparedStatement p=dbconnection_admin.updatequery(query);
 		System.out.print("\n Enter Address ");
-		String Address=sc.next();
+		String Address=sc.nextLine();
 		System.out.println("Enter date in yyyy-mm-dd format");
-		String date=sc.next();
+		String date=sc.nextLine();
 		System.out.println("Enter complain");
-		String complain=sc.next();
+		String complain=sc.nextLine();
 		p.setString(1,Address);
 		p.setString(2,date);
 		p.setString(3,complain);
 		p.setInt(4, id);
 		int i=p.executeUpdate();
-		if(i>0)
+		if(i>0) {
 			System.out.println("plumber updated Successfully");
-		else
+			reload();
+		}
+		else {
 			System.out.println("update failed");
-		
+			reload();
+		}
 	}
 	public void updatecarWash()throws Exception {
 		Scanner sc=new Scanner(System.in);
@@ -286,22 +337,27 @@ public class adminInterface {
 		String query="UPDATE car_wash SET  address = ?, c_date = ?,complain=? WHERE wash_id=? ;";
 		PreparedStatement p=dbconnection_admin.updatequery(query);
 		System.out.print("\n Enter Address ");
-		String Address=sc.next();
+		String Address=sc.nextLine();
 		System.out.println("Enter date in yyyy-mm-dd format");
-		String date=sc.next();
+		String date=sc.nextLine();
 		System.out.println("Enter complain");
-		String complain=sc.next();
+		String complain=sc.nextLine();
 		p.setString(1,Address);
 		p.setString(2,date);
 		p.setString(3,complain);
 		p.setInt(4, id);
 		int i=p.executeUpdate();
-		if(i>0)
+		if(i>0) {
 			System.out.println("CarWash updated Successfully");
-		else
+			reload();
+		}
+		else {
 			System.out.println("update failed");
+			reload();
+		}
 	}
 	public void updateElectrician()throws Exception {
+		Main n=new Main();
 		Scanner sc=new Scanner(System.in);
 		displayelectrician();
 		System.out.println("Select the id for the row you want to update");
@@ -309,20 +365,24 @@ public class adminInterface {
 		String query="UPDATE electrician SET  address = ?, c_date = ?,complain=? WHERE e_id=? ;";
 		PreparedStatement p=dbconnection_admin.updatequery(query);
 		System.out.print("\n Enter Address ");
-		String Address=sc.next();
+		String Address=sc.nextLine();
 		System.out.println("Enter date in yyyy-mm-dd format");
-		String date=sc.next();
+		String date=sc.nextLine();
 		System.out.println("Enter complain");
-		String complain=sc.next();
+		String complain=sc.nextLine();
 		p.setString(1,Address);
 		p.setString(2,date);
 		p.setString(3,complain);
 		p.setInt(4, id);
 		int i=p.executeUpdate();
-		if(i>0)
+		if(i>0) {
 			System.out.println("Electrician updated Successfully");
-		else
+			reload();
+		}
+		else {
 			System.out.println("update failed");
+		 reload();
+		}
 	}
 	////////////////////////////////DELETE///////////////////////////////
 
@@ -336,10 +396,14 @@ public class adminInterface {
 		PreparedStatement p=dbconnection_admin.updatequery(query);
 		p.setInt(1,id);
 		int i=p.executeUpdate();
-		if(i>0)
+		if(i>0) {
 			System.out.println("User deleted Successfully");
-		else
+			reload();
+		}
+		else {
 			System.out.println("delete failed");
+			reload();
+		}
 		
 	}
 	public void deleteElectrician() throws Exception{
@@ -351,10 +415,14 @@ public class adminInterface {
 		PreparedStatement p=dbconnection_admin.updatequery(query);
 		p.setInt(1,id);
 		int i=p.executeUpdate();
-		if(i>0)
+		if(i>0) {
 			System.out.println("Electrician deleted Successfully");
-		else
+			reload();
+		}
+		else {
 			System.out.println("delete failed");
+			reload();
+		}
 		
 	}
 public void deletePlumber() throws Exception{
@@ -366,10 +434,15 @@ public void deletePlumber() throws Exception{
 	PreparedStatement p=dbconnection_admin.updatequery(query);
 	p.setInt(1,id);
 	int i=p.executeUpdate();
-	if(i>0)
+	if(i>0) {
 		System.out.println("Plumber deleted Successfully");
-	else
+	  reload();
+	}
+	else {
 		System.out.println("delete failed");
+		reload();
+	}
+	
 	}
 public void deletecarWash() throws Exception{
 	displaycarwash();
@@ -380,10 +453,15 @@ public void deletecarWash() throws Exception{
 	PreparedStatement p=dbconnection_admin.updatequery(query);
 	p.setInt(1,id);
 	int i=p.executeUpdate();
-	if(i>0)
+	if(i>0) {
 		System.out.println("carwash deleted Successfully");
-	else
+		reload();
+	}  
+	else {
 		System.out.println("delete failed");
+		reload();
+	
+	}
 	
 }
 }

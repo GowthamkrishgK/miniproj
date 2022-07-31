@@ -28,6 +28,7 @@ public class Main {
 				if(r.equals("admin")) {
 				    System.out.println("Login Success");
 				    System.out.println("Welcome To Admin Portal "+name);
+				    
 				    admin();
 				}
 				if(r.equals("user")) {
